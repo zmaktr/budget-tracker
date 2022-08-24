@@ -4,6 +4,16 @@ import React, { createContext, useReducer } from "react";
 // Reducer funtion (current state, action)
 export const AppReducer = (state, action) => {
     switch(action.type) {
+        case 'ADD_EXPENSE':
+            return {
+                // existing state of object 'expense' = ...state // add the payload (action.payload) to exisiting object of expenses (...state.expenses)
+                ...state, 
+                expenses: [...state.expenses, action.payload],
+            }
+        case 'DELETE_EXPENSE':
+            return {
+
+            }
         default:
             return state
     }
