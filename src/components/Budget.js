@@ -4,14 +4,18 @@ import EditBudget from "./EditBudget";
 import ViewBudget from "./ViewBudget";
 
 const Budget = () => {
-  const { budget } = useContext(AppContext);
+  const { budget, dispatch } = useContext(AppContext);
   const [budgetWindow, setBudgetWindow] = useState(true);
 
   const inputBudget = () => {
     setBudgetWindow(false);
   };
 
-  const saveNewBudget = () => {
+  const saveNewBudget = (addBudget) => {
+    dispatch({
+      type: "CHANGE_BUDGET",
+      payload: addBudget,
+    });
     setBudgetWindow(true);
   };
 

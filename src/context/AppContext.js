@@ -17,6 +17,11 @@ export const AppReducer = (state, action) => {
           (expense) => expense.name !== action.payload
         ),
       };
+    case "CHANGE_BUDGET":
+      return {
+        ...state,
+        budget: action.payload,
+      };
     default:
       return state;
   }
