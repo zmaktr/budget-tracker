@@ -1,13 +1,29 @@
-import React, {useContext} from 'react'
-import { AppContext } from '../context/AppContext'
+import React, { useContext, useState } from "react";
+import { AppContext } from "../context/AppContext";
+import EditBudget from "./EditBudget";
+import ViewBudget from "./ViewBudget";
 
 const Budget = () => {
-  const { budget } = useContext(AppContext)
-  return (
-    <div className='alert alert-secondary'>
-        <span>Budget: ${budget}</span>
-    </div>
-  )
-}
+  const { budget } = useContext(AppContext);
+  const [budgetWindow, setBudgetWindow] = useState(true);
 
-export default Budget
+  const inputBudget = () => {
+    setBudgetWindow(false);
+  };
+
+  const saveNewBudget = () => {
+    setBudgetWindow(true);
+  };
+
+  return (
+    <div>
+      {budgetWindow ? (
+        <ViewBudget inputBudget={inputBudget} budget={budget} />
+      ) : (
+        <EditBudget saveNewBudget={saveNewBudget} budget={budget} />
+      )}
+    </div>
+  );
+};
+
+export default Budget;
